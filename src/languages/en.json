@@ -1,0 +1,19 @@
+{
+  "welcome": "Chào mừng đến với HighBarBon",
+  "header.menu.first": "Đặt bàn",
+  "header.menu.second": "Lịch sử",
+  "branches": "Các chi nhánh",
+  "book.form.nameLabel": "Tên người đặt",
+  "book.form.phoneLabel": "Số điện thoại",
+  "book.form.numberOfPeopleLabel": "Số người trong nhóm",
+  "book.form.scheduleLabel": "Chọn ngày và giờ",
+  "book.form.reset": "Xoá dữ liệu",
+  "book.form.save": "Đặt bàn",
+  "book.form.reservation": "Cọc {money}k để đặt bàn. Quí khách sẽ nhận được email đặt bàn sau khi thanh toán.",
+  "book.qrcode.momo": "Thanh Toán Momo",
+  "required": "Bắt buộc",
+  "phone.validation.length": "Số điện thoại phải 10 số",
+  "validation.moreThanZero": "Phải lớn hơn 0",
+  "success": "Thành công",
+  "failed.duplicatedBookedTime": "Thất bại do đã có người đặt. Load lại trang để cập nhật"
+}

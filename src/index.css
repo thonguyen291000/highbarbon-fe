@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Inter900;
+  src: url("./assets/fonts/Inter-Black.ttf");
+}
+
+@font-face {
+  font-family: Inter800;
+  src: url("./assets/fonts/Inter-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: Inter700;
+  src: url("./assets/fonts/Inter-Bold.ttf");
+}
+
+@font-face {
+  font-family: Inter600;
+  src: url("./assets/fonts/Inter-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: Inter500;
+  src: url("./assets/fonts/Inter-Medium.ttf");
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("./assets/fonts/Inter-Regular.ttf");
+}
+
+@font-face {
+  font-family: Inter300;
+  src: url("./assets/fonts/Inter-Light.ttf");
+}
+
+@font-face {
+  font-family: Inter200;
+  src: url("./assets/fonts/Inter-ExtraLight.ttf");
+}
+
+@font-face {
+  font-family: Inter100;
+  src: url("./assets/fonts/Inter-Thin.ttf");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  zoom: 1;
+}
+
+body {
+  /* min-width: 1440px; */
+}
+
+/* @media (max-width: 768px) {
+  * {
+    zoom: 0.9;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  * {
+    zoom: 0.93;
+  }
+} */
+
+html {
+  background-color: azure;
+}
+
+@media (min-width: 1024px) {
+  * {
+    zoom: 1;
+  }
+}
+
+.Mui-error {
+  font-size: 12px !important;
+}
