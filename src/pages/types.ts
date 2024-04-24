@@ -4,6 +4,7 @@ export interface IBranch {
   description?: string;
   restaurants: string[];
   image: string;
+  city: string;
 }
 
 export interface IRestaurant {

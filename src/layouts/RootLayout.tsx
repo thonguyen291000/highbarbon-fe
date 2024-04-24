@@ -144,7 +144,9 @@ const RootLayout = () => {
         {pathname === "/" ? (
           <Outlet />
         ) : loading ? (
-          <Spinner />
+          <CommonLayout>
+            <Spinner />
+          </CommonLayout>
         ) : (
           <CommonLayout>
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>

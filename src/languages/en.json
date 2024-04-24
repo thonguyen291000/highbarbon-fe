@@ -12,8 +12,13 @@
   "book.form.reservation": "Cọc {money}k để đặt bàn. Quí khách sẽ nhận được email đặt bàn sau khi thanh toán.",
   "book.qrcode.momo": "Thanh Toán Momo",
   "required": "Bắt buộc",
-  "phone.validation.length": "Số điện thoại phải 10 số",
+  "phone.validation": "Số điện thoại phải 10 số và theo mẫu 0123456789",
   "validation.moreThanZero": "Phải lớn hơn 0",
   "success": "Thành công",
-  "failed.duplicatedBookedTime": "Thất bại do đã có người đặt. Load lại trang để cập nhật"
+  "failed.duplicatedBookedTime": "Thất bại do đã có người đặt. Load lại trang để cập nhật",
+  "empty.city": "Hiện tại thành phố này chưa có cơ sở hoạt động.",
+  "empty.branch": " Hiện tại chi nhánh này đang xây dựng cơ sở mới.",
+  "phone.recall": "Vui lòng để lại số điện thoại để chúng tôi có thể liên lạc bạn khi hoàn thành xây dựng",
+  "go.active.branch": "Đến chi nhánh đang hoạt động",
+  "phone.placeholder": "Số điện thoại (0123456789)"
 }

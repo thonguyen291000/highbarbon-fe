@@ -51,16 +51,23 @@ export default function NormalCard({
   image: string;
   title: string;
   description: string;
-  bottomRightContent: string;
+  bottomRightContent?: string;
   handleClick?: any;
 }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.card} onClick={handleClick}>
-      <CardMedia className={classes.media} image={image} title="card media" />
+      {!image ||
+        (image === "" && (
+          <CardMedia
+            className={classes.media}
+            image={image}
+            title="card media"
+          />
+        ))}
       <CardContent className={classes.content}>
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="body1">{title}</Typography>
         <Typography variant="body2" color="textSecondary">
           {description}
         </Typography>

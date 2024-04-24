@@ -41,7 +41,7 @@ const HomePageWrapper = styled(Box)`
   background-repeat: no-repeat;
   background-size: cover;
 
-  height: calc(100vh - 80px);
+  height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;

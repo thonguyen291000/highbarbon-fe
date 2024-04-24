@@ -67,14 +67,11 @@ export const BookPage = () => {
   const [selection, setSelection] = useState({});
 
   const currentTable = appData.tables.find((table) => tableId === table._id);
+  const currentRestaurant = appData.restaurants.find(
+    (restaurant) => currentTable.restaurant_id === restaurant._id
+  );
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    watch,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit, reset, watch } = useForm({
     defaultValues: {
       name: "",
       phone: "",
@@ -86,6 +83,8 @@ export const BookPage = () => {
   const { loading, triggerApiCall } = useApi<
     {
       tableId: string;
+      branchId: string;
+      restaurantId: string;
       username: string;
       phone: string;
       date: string;
@@ -97,6 +96,8 @@ export const BookPage = () => {
     callFunction: async (params): Promise<void> => {
       const payload = {
         table_id: params.tableId,
+        branch_id: params.branchId,
+        restaurant_id: params.restaurantId,
         username: params.username,
         phone: params.phone,
         reservation_time: {
@@ -108,22 +109,22 @@ export const BookPage = () => {
       await axiosPublic.post("/api/reservation", payload);
     },
     onComplete: () => {
-      toast(formatMessage({ id: "success" }));
+      toast.done(formatMessage({ id: "success" }));
     },
     onFailed: () => {
       // TODO: Thông báo thất bại và reset lại page
-      toast(formatMessage({ id: "failed.duplicatedBookedTime" }));
+      toast.error(formatMessage({ id: "failed.duplicatedBookedTime" }));
     },
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     const date = formatDayMonthYearDate(data.date);
     const hours = Object.keys(selection);
 
     const payload = {
       tableId: currentTable._id,
+      restaurantId: currentTable.restaurant_id,
+      branchId: currentRestaurant.branch_id,
       username: data.name,
       phone: data.phone,
       amountOfPeople: data.amount_of_people,
@@ -182,15 +183,15 @@ export const BookPage = () => {
                   required: formatMessage({ id: "required" }),
                   minLength: {
                     value: 10,
-                    message: formatMessage({ id: "phone.validation.length" }),
+                    message: formatMessage({ id: "phone.validation" }),
                   },
                   maxLength: {
                     value: 10,
-                    message: formatMessage({ id: "phone.validation.length" }),
+                    message: formatMessage({ id: "phone.validation" }),
                   },
                   pattern: {
                     value: /^[0-9]{10}$/,
-                    message: formatMessage({ id: "phone.validation.length" }),
+                    message: formatMessage({ id: "phone.validation" }),
                   },
                 }}
                 render={({ field, fieldState }) => (
