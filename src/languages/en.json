@@ -20,5 +20,6 @@
   "empty.branch": " Hiện tại chi nhánh này đang xây dựng cơ sở mới.",
   "phone.recall": "Vui lòng để lại số điện thoại để chúng tôi có thể liên lạc bạn khi hoàn thành xây dựng",
   "go.active.branch": "Đến chi nhánh đang hoạt động",
-  "phone.placeholder": "Số điện thoại (0123456789)"
+  "go.back": "Trở lại trang trước",
+  "phone.placeholder": "0123456789"
 }

@@ -13,7 +13,7 @@ import { useState } from "react";
 import { MenuLink } from "./MenuLink";
 import { useIntl } from "react-intl";
 import { ImageContainer } from "./shared/styled";
-import Logo from "../../assets/images/logo/logo.png";
+import Logo from "../../assets/images/logo/logo.jpg";
 import { useNavigate } from "react-router-dom";
 
 const MobileMenu = () => {

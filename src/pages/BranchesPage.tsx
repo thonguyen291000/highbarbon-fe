@@ -15,14 +15,16 @@ import { theme } from "../theme";
 import { useIntl } from "react-intl";
 import useTrack from "../track/hooks/useTrack";
 import { TRACK_EVENT_NAMES } from "../track/const";
+import { useState } from "react";
 
-const cities = ["Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Cần Thơ"];
+export const cities = ["Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Cần Thơ"];
 
 export const BranchesPage = () => {
   const navigate = useNavigate();
   const { appData } = useAppData();
   const { formatMessage } = useIntl();
   const { triggerTrackApiCall } = useTrack();
+  const [accordionExpand, setAccordionExpand] = useState({});
 
   const handleClick = async (branchId, branchName) => {
     await triggerTrackApiCall({
@@ -34,10 +36,17 @@ export const BranchesPage = () => {
   };
 
   const handleTrackCityClickOn = async (city) => {
-    await triggerTrackApiCall({
-      eventName: TRACK_EVENT_NAMES.TRACK_CLICK_ON_CITY(city),
-      metadata: {},
-    });
+    setAccordionExpand((prev) => ({
+      ...prev,
+      [`${city}`]: !prev[city],
+    }));
+
+    if (!accordionExpand[city]) {
+      await triggerTrackApiCall({
+        eventName: TRACK_EVENT_NAMES.TRACK_CLICK_ON_CITY(city),
+        metadata: {},
+      });
+    }
   };
 
   if (!appData) return <Spinner />;
@@ -50,11 +59,8 @@ export const BranchesPage = () => {
         );
 
         return (
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ArrowDropDownIcon />}
-              onClick={handleTrackCityClickOn}
-            >
+          <Accordion onClick={() => handleTrackCityClickOn(city)}>
+            <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
               <Typography>{city}</Typography>
             </AccordionSummary>
             <AccordionDetails>

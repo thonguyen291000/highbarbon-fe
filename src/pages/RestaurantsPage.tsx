@@ -11,6 +11,7 @@ import useTrack from "../track/hooks/useTrack";
 import { TRACK_EVENT_NAMES } from "../track/const";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { cities } from "./BranchesPage";
 
 export const RestaurantsPage = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export const RestaurantsPage = () => {
   const handleClickOnButton = () => {
     const regex = /^\d{10}$/;
 
-    if (!regex.test(phone)) {
+    if (phone !== "" && !regex.test(phone)) {
       toast.error(formatMessage({ id: "phone.validation" }));
 
       return;
@@ -43,13 +44,17 @@ export const RestaurantsPage = () => {
       eventName: TRACK_EVENT_NAMES.TRACK_CLICK_ON_BRANCH(currentBranch.name),
       metadata: {},
     });
+
+    if (currentBranch.city === cities[0])
+      navigate("/branches/6623faf03d5996c4a9de7453");
+    else navigate("/branches");
   };
 
   if (!appData) return <Spinner />;
 
   return (
     <Box>
-      {restaurants.length === 0 ? (
+      {restaurants.length > 0 ? (
         restaurants.map((restaurant) => (
           <NormalCard
             title={restaurant.name}
@@ -101,7 +106,9 @@ export const RestaurantsPage = () => {
             }}
             onClick={handleClickOnButton}
           >
-            {formatMessage({ id: "go.active.branch" })}
+            {currentBranch.city === cities[0]
+              ? formatMessage({ id: "go.active.branch" })
+              : formatMessage({ id: "go.back" })}
           </LoadingButton>
         </Box>
       )}

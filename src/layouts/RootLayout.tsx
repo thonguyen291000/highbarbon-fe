@@ -64,40 +64,38 @@ const RootLayout = () => {
     scrollToTop();
 
     if (pathname.includes("branches")) {
-      setBreadcrumbs((prev) =>
-        uniqWith(
-          [
-            ...prev,
-            {
-              name: formatMessage({ id: "branches" }),
-              to: "/branches",
-            },
-          ],
-          isEqual
-        )
-      );
+      setBreadcrumbs([
+        {
+          name: formatMessage({ id: "branches" }),
+          to: "/branches",
+        },
+      ]);
     }
 
     if (branchId && appData.branches.length > 0) {
-      setBreadcrumbs((prev) =>
-        uniqWith(
+      setBreadcrumbs((prev) => {
+        const array = prev.length > 1 ? [prev[0]] : prev;
+
+        return uniqWith(
           [
-            ...prev,
+            ...array,
             {
               name: appData.branches.find((item) => item._id === branchId).name,
               to: "/branches/" + branchId,
             },
           ],
           isEqual
-        )
-      );
+        );
+      });
     }
 
     if (restaurantId && appData.restaurants.length > 0) {
-      setBreadcrumbs((prev) =>
-        uniqWith(
+      setBreadcrumbs((prev) => {
+        const array = prev.length > 2 ? [prev[0], prev[1]] : prev;
+
+        return uniqWith(
           [
-            ...prev,
+            ...array,
             {
               name: appData.restaurants.find(
                 (item) => item._id === restaurantId
@@ -106,23 +104,25 @@ const RootLayout = () => {
             },
           ],
           isEqual
-        )
-      );
+        );
+      });
     }
 
     if (tableId && appData.tables.length > 0) {
-      setBreadcrumbs((prev) =>
-        uniqWith(
+      setBreadcrumbs((prev) => {
+        const array = prev.length > 3 ? [prev[0], prev[1], prev[3]] : prev;
+
+        return uniqWith(
           [
-            ...prev,
+            ...array,
             {
               name: appData.tables.find((item) => item._id === tableId).name,
               to: `/branches/${branchId}/${restaurantId}/${tableId}`,
             },
           ],
           isEqual
-        )
-      );
+        );
+      });
     }
   }, [formatMessage, pathname, appData]);
 

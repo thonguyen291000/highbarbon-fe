@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/images/logo/logo.png";
+import Logo from "../../assets/images/logo/logo.jpg";
 import MobileMenu from "./MobileMenu";
 import { ImageContainer } from "./shared/styled";
 

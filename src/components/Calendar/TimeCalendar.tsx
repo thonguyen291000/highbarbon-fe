@@ -62,6 +62,16 @@ const TimeCalendar = ({
       if (prototype[key]) delete prototype[key];
       else prototype[key] = true;
 
+      const hours = Object.keys(prototype)
+        .map((hour) => Number(hour))
+        .filter((hour) => !dataTemplate[hour]);
+      const maxNumber = Math.max(...hours);
+      const minNumber = Math.min(...hours);
+
+      for (let index = minNumber; index <= maxNumber; index++) {
+        prototype[index] = dataTemplate[index] ? false : true;
+      }
+
       return prototype;
     });
   };
@@ -82,20 +92,30 @@ const TimeCalendar = ({
                 if (!isSelected && canEdit) handleSelect(key);
               }}
             >
-              <Item
+              <Box
                 sx={{
-                  backgroundColor: isSelecting
-                    ? theme.palette.primary[600]
-                    : theme.palette.common.white,
-                  color: isSelecting
-                    ? theme.palette.common.white
-                    : theme.palette.common.black,
-                  cursor: !canEdit || isSelected ? "initial" : "pointer",
-                  opacity: isSelected && !isSelecting ? 0.5 : 1,
+                  position: "relative",
+                  background: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='black' stroke-width='2'/><path d='M0 0 L100 100 ' stroke='black' stroke-width='2'/></svg>")`,
+                  backgroundRepeat: "noRepeat",
+                  backgroundPosition: "center",
+                  backgroundSize: "100% 100%, auto",
                 }}
               >
-                {key}
-              </Item>
+                <Item
+                  sx={{
+                    backgroundColor: isSelecting
+                      ? theme.palette.primary[600]
+                      : theme.palette.common.white,
+                    color: isSelecting
+                      ? theme.palette.common.white
+                      : theme.palette.common.black,
+                    cursor: !canEdit || isSelected ? "initial" : "pointer",
+                    opacity: isSelected && !isSelecting ? 0.5 : 1,
+                  }}
+                >
+                  {key}
+                </Item>
+              </Box>
             </Grid>
           );
         })}
